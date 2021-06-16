@@ -50,10 +50,10 @@ mean_change = net_pl / month_count
 
 # List to hold analysis output text
 output = ["Financial Analysis",
-    "--------------------------------------------------------------------",
+    "--------------------------------------------------------------",
     f"Total months: {month_count}",
-    f"Net profit/loss: ${format_currency(net_pl)}",
-    f"Average monthly profit/loss: ${format_currency(mean_change)}",
+    f"Net profit/loss: {format_currency(net_pl)}",
+    f"Average monthly profit/loss: {format_currency(mean_change)}",
     f"Greatest monthly profit {format_currency(gr_incr[1])} occurred during {gr_incr[0]}",
     f"Greatest monthly loss {format_currency(gr_decr[1])} occurred during {gr_decr[0]}",
     ]
@@ -62,6 +62,12 @@ output = ["Financial Analysis",
 # Print results to console
 for row in output:
     print(row)
+
+# Output results to text file
+outfile = os.path.join('Analysis', "PyBank_output.txt")
+with open(outfile, 'w') as file1:
+    for row in output:
+        file1.write(f"{row}\n")
 
 
 

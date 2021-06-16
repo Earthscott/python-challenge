@@ -1,0 +1,7 @@
+Financial Analysis
+--------------------------------------------------------------
+Total months: 86
+Net profit/loss: $38,382,578.00
+Average monthly profit/loss: $446,309.05
+Greatest monthly profit $1,170,593.00 occurred during Feb-2012
+Greatest monthly loss -$1,196,225.00 occurred during Sep-2013
