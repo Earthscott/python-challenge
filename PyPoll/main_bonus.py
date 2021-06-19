@@ -17,6 +17,7 @@ with open(csvpath, 'r') as csvfile:
 
     # Initialize target variables
     vote_count = {}
+    vote_count2 = {}   # Bonus analysis: tally by candidate and county
 
     # Read and process each row
     for row in csvreader:
@@ -40,13 +41,13 @@ for candidate in vote_count.keys():
         winner = candidate
 
 # List to hold analysis output text
-ndash = 30    # Number of dashes to print horizontal line
+ndash = 30
 output = ["Election Results",
         "-" * ndash,
         "Total votes: " + f"{total_count:,}",
         "-" * ndash]
-for candidate in sorted(vote_count.keys()):  # Output results for each candidate
-    pcnt_vote = vote_count[candidate] / total_count   # Calculate percentage of total votes
+for candidate in sorted(vote_count.keys()):
+    pcnt_vote = vote_count[candidate] / total_count
     output.append(f"{candidate}: " + f"{pcnt_vote:.3%} (" + f"{vote_count[candidate]:,})")
 output.append("-" * ndash)
 output.append(f"Winner: {winner}")
