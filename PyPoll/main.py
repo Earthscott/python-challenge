@@ -22,20 +22,17 @@ with open(csvpath, 'r') as csvfile:
     for row in csvreader:
 
         # Count votes for each candidate
-        if row[1] in vote_count.keys():   # Check if candidate is in vote_count
-            vote_count[row[1]] += 1
+        if row[2] in vote_count.keys():   # Check if candidate is in the keys vote_count
+            vote_count[row[2]] += 1
         else:                             # Add new candidate to vote_count
-            vote_count[row[1]] = 1
+            vote_count[row[2]] = 1
 
-# Initialize results variables
-total_count = 0
+# Sum total votes
+total_count = sum(vote_count.values())
 
-# Find max value in vote_count
+# Find max value in vote_count and identify winner
 max_votes = max(vote_count.values())
-
-# Tabulate all votes and identify winner
 for candidate in vote_count.keys():
-    total_count += vote_count[candidate]
     if vote_count[candidate] == max_votes:
         winner = candidate
 
