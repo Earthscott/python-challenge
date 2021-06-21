@@ -22,7 +22,7 @@ with open(csvpath, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
     # Skip header row
-    csv_header = next(csvreader)
+    next(csvreader)
 
     # Initialize target variables
     month_count = 0
