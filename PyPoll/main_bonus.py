@@ -1,6 +1,7 @@
 import os
 import csv
 import copy
+from re import split
 import numpy as np
 from prettytable import PrettyTable
 
@@ -32,18 +33,16 @@ with open(csvpath, 'r') as csvfile:
         else:                                          # County key and candidate subkey exist
             vote_count2[row[1]][row[2]] += 1           # Tally vote
 
-# print(vote_count2)
-# print()
-
+# Create independent copy of dictionary
 test_dict = copy.deepcopy(vote_count2)
 
+# Delete some items so a few county-candidate combinations are undefined
 del test_dict['Trandee']["O'Tooley"]
 del test_dict['Trandee']['Li']
 del test_dict['Queen']['Khan']
 del test_dict['Bamoo']['Khan']
 
 counties = sorted(test_dict.keys())
-# print(counties)
 
 candidates = []
 votes_bycounty = {}
@@ -61,38 +60,53 @@ for candidate_dict in test_dict.values():
     for candidate in candidate_dict.keys():
         votes_bycandidate[candidate] += candidate_dict.get(candidate,0)
 
-# Sum total votes
 total_votes = sum(votes_bycounty.values())
 
 percent_bycandidate = {}
 for candidate in candidates:
     percent_bycandidate[candidate] = votes_bycandidate[candidate] / total_votes
 
-# print(percent_bycandidate)
-# print()
 
-output = ["County\tTotal Votes\t" + '\t'.join(candidates)] 
+PTab = PrettyTable()
+
+fields = ['County', 'Total Votes']
+fields.extend(candidates)
+PTab.field_names = fields
+
 for county in counties:
     percents = []
+    row = [f"{county}", f"{votes_bycounty[county]:,}"]
     for candidate in candidates:
         count = test_dict[county].get(candidate, 0)
         percent = count / votes_bycounty[county]
-        percents.append(f"{percent:.2%}")
-    output.append(f"{county}\t{votes_bycounty[county]:,}\t" + '\t'.join(percents))
-percents = []
+        percents.append(f"{count:,} ({percent:.1%})")
+    row.extend(percents)
+    PTab.add_row(row)
+
+row = ['Total', f"{total_votes:,}"]
+tot_percents = []
 for candidate in candidates:
-    percent = percent_bycandidate[candidate]
-    percents.append(f"{percent:.2%}")
-output.append(f"Total\t{total_votes:,}\t" + '\t'.join(percents))
+    tot_percent = percent_bycandidate[candidate]
+    tot_percents.append(f"{tot_percent:.1%}")
+row.extend(tot_percents)
+PTab.add_row(row)
 
+PTab.align = 'r'
+PTab.align['County'] = 'l'
 
-# Print results to console
-for row in output:
+text_table = PTab.get_string()
+rows = text_table.split("\n")
+dashrow = rows[0]
+rows.insert(len(rows) - 2, dashrow)
+
+for row in rows:
     print(row)
 
 
 
 
 
-    
+
+
+
 
