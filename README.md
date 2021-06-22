@@ -2,7 +2,7 @@
 
 ## PyBank
 
-The goal is to perform a financial analysis of monthly profit or loss over a certain time period. Given an input file with the following fields:
+The objective is to perform a financial analysis of monthly profit or loss over a certain time period. Given an input file with the following fields:
 
 1. Date (format Mmm-yyyy)
 
@@ -22,7 +22,7 @@ Find the following:
 
 Print the results to the terminal and save the results in a text file.
 
-The input file is located in the PyBank/Resources folder, and the output is saved in the PyBank/Analysis folder. The script is executed from the PyBank folder.
+The input file is located in the `PyBank/Resources` folder, and the output is saved in the `PyBank/Analysis` folder. The script `main.pl` is executed from the `PyBank` folder.
 
 ## PyPoll
 
@@ -45,5 +45,5 @@ Tabulate the votes for each candidate and report the following:
 
 Note that the Voter ID and the County are not needed for this analysis. Print the results to the terminal and save the results in a text file.
 
-The input file is located in the PyPoll/Resources folder, and the output is saved in the PyPoll/Analysis folder. The script is executed from the PyPoll folder.
+The input file is located in the `PyPoll/Resources` folder, and the output is saved in the `PyPoll/Analysis` folder. The script `main.pl` is executed from the `PyPoll` folder.
 
