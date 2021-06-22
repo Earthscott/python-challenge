@@ -10,7 +10,7 @@ def format_currency(value):
 
 # Input file has columns: Date, Profit/Losses
     # Date format "MMM-YYYY"
-    # 'Profit/Losses' represents profit or loss for the given month-year
+    # 'Profit/Losses' represents profit or loss during that month
     
 # Set path to input file
 csvpath = os.path.join('Resources', 'budget_data.csv')
@@ -56,7 +56,7 @@ with open(csvpath, 'r') as csvfile:
         # Store previous profit/loss for difference calculation
         prev_pl = pl
 
-# Calculate mean change in month-to-month profit/loss difference
+# Calculate mean of the month-to-month profit/loss differences
 delta_mean = sum(delta_list) / len(delta_list)
 
 # List to hold analysis output text
